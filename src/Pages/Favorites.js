@@ -1,28 +1,37 @@
 import { useState,useEffect} from "react"
+import Card from "../components/Card"
 
 function Favorites(){
   const [movies,setMovies]=useState([])
-  const localFavorites=localStorage.getItem("favoritesIds")
-  const favoritesIds=JSON.parse(localFavorites)
-
-  const fetchData =()=>{
-    favoritesIds.forEach(async (ID) => {
+  
+  const fetchFavorites = async()=>{
+    const localFavorites=localStorage.getItem("favoritesIds")
+    const favoritesIds=JSON.parse(localFavorites)
+    const promises=favoritesIds.map(ID=>{
+      return fetchData(ID)
+    })
+    const resolvedPromises= await Promise.all(promises)
+    setMovies(resolvedPromises) // SETMOVIEEEEEES !!!
+  }
+  const fetchData = async(ID)=>{
       const request=await fetch(`https://api.themoviedb.org/3/movie/${ID}?api_key=f7e05047484d6ec018591df8216ff84e`)
       const response=await request.json()
-      setMovies([...movies,response])
-    });
-  }
+      return(response) 
+    };
+
   useEffect(()=>{
-    fetchData()
+    fetchFavorites()
+    // eslint-disable-next-line
   },[])
-  const test=()=>{
-    console.log(movies)
-  }
 
   return(
     <>
     <h1>Favorites :</h1>
-    <button onClick={test} >Click !</button>
+    <div className="row">
+    {movies.map(movie=>(
+      <Card key={movie.title} movie={movie} movies={movies} fetchFavorites={fetchFavorites}/>
+    ))}
+    </div>
     </>
 )}
 

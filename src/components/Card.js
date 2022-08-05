@@ -13,7 +13,14 @@ function Card(props){
         localStorage.setItem('favoritesIds',JSON.stringify(favoritesIds))
     }
   }
-
+  const removeFav=()=>{ // Setting again the localStorage and passing the fetch to initilise the removed movie
+    var localFavorites=JSON.parse(localStorage.getItem('favoritesIds')) 
+    if(localFavorites.includes(props.movie.id)){
+    localFavorites.splice(localFavorites.indexOf(props.movie.id),1)
+    localStorage.setItem('favoritesIds',JSON.stringify(localFavorites))
+    }
+    props.fetchFavorites() // Error is not a function insolved yet ! tryed method : (import { PropTypes } from "react";)
+  }
   return(
     <div className="card" style={{width: '18rem'}}>
     <img src={`https://image.tmdb.org/t/p/w300/${props.movie.poster_path}`} className="card-img-top" alt={props.title} />
@@ -22,6 +29,7 @@ function Card(props){
       <p className='card-text'>Release date: {props.movie.release_date}</p>
       <p className='card-text'>{props.movie.overview}</p>
       <button onClick={addToFavorites}>Add to favorites</button>
+      <button onClick={removeFav}>Remove from favorites</button>
     </div>
   </div>
   )}

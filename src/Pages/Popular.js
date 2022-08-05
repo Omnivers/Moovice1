@@ -15,9 +15,11 @@ const Popular = () => {
   return (
     <>
       <h1>Popular</h1>
+      <div className="row">
       {movies.map(movie => (
           <Card key={movie.title} movie={movie} />
         ))}
+      </div>
   </>
   )
 }
