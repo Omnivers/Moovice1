@@ -28,11 +28,14 @@ function Favorites(){
     <>
     <h1>Favorites :</h1>
     <div className="row">
-    {movies.map(movie=>(
+      {movies.length===0?(
+      <h1>You have no Favorites movies yet !</h1>
+      ):(
+    movies.map(movie=>(
       <Card key={movie.title} movie={movie} movies={movies} fetchFavorites={fetchFavorites}/>
-    ))}
+    ))
+      )}
     </div>
     </>
 )}
-
-export default Favorites
+export default Favorites;
