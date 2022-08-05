@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// f7e05047484d6ec018591df8216ff84e
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import Favorites from "./Pages/Favorites"
+import Home from "./Pages/Home"
+import NotFound from "./Pages/NotFound"
+import Popular from "./Pages/Popular"
+import Weekly from "./Pages/Weekly"
+import Header from "./components/Header"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(){
+  return(
+    <BrowserRouter>
+    <Header />
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/Favorites' element={<Favorites />} />
+      <Route path='/Popular' element={<Popular />} />
+      <Route path='/Weekly' element={<Weekly />} />
+      <Route path='/*' element={<NotFound />} />
+    </Routes>
+    </BrowserRouter>
+  )
 }
-
 export default App;
