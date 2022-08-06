@@ -1,4 +1,5 @@
 function Card(props){
+
   const addToFavorites=()=>{
     var favoritesIds = [] // Nos IDS Favoris
     var localFavorites=localStorage.getItem('favoritesIds')//On récupére notre base de localStorage
@@ -13,6 +14,7 @@ function Card(props){
         localStorage.setItem('favoritesIds',JSON.stringify(favoritesIds))
     }
   }
+
   const removeFav=()=>{ // Setting again the localStorage and passing the fetch to initilise the removed movie
     var localFavorites=JSON.parse(localStorage.getItem('favoritesIds')) 
     if(localFavorites.includes(props.movie.id)){
@@ -21,6 +23,7 @@ function Card(props){
     }
     props.fetchFavorites() // Error is not a function insolved yet ! tryed method : (import { PropTypes } from "react";)
   }
+    
   return(
     <div className="card" style={{width: '18rem'}}>
     <img src={`https://image.tmdb.org/t/p/w300/${props.movie.poster_path}`} className="card-img-top" alt={props.title} />
