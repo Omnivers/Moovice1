@@ -1,5 +1,83 @@
+import { useEffect,useState } from 'react';
+import Card from '../components/Card';
+import moment from 'moment';
+
 const Home = () => {
-    return <div>Home</div>
+
+  //Variables:
+  const [lastMovie,setLastMovie]=useState();
+  const [topRatedMovie,setTopRatedMovie]=useState([]);
+  const [nowPlaying,setnowPlaying]=useState([]);
+  const [upComming,setUpComming]=useState([]);
+
+  // Moment var :
+  const tomorrow = moment().add(1, "days").format("YYYY-MM-DD")
+  const nextWeek = moment().add(7, "days").format("YYYY-MM-DD")
+
+  // My API adress :
+  const API_KEY='f7e05047484d6ec018591df8216ff84e'
+
+  // Fetching fuctions :
+  const fetchLastMovie =async()=>{
+    const request=await fetch(`https://api.themoviedb.org/3/movie/latest?api_key=${API_KEY}&language=en-US`)
+    const response=await request.json()
+    setLastMovie(response)
+  }
+  const fetchTopRated = async()=>{
+    const request=await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`)
+    const response=await request.json()
+    setTopRatedMovie(response.results) 
+  }
+  const fetchNowPlaying = async ()=>{
+    const request=await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`)
+    const response=await request.json()
+    setnowPlaying(response.results) 
+  }
+  const fetchUpComming = async ()=>{
+    const request=await fetch(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${tomorrow}&primary_release_date.lte=${nextWeek}&api_key=${API_KEY}`)
+    const response=await request.json()
+    setUpComming(response.results) 
+  }
+
+  // Component did amont for our fetching functions :
+  useEffect(()=>{
+    fetchLastMovie();
+    fetchTopRated();
+    fetchNowPlaying();
+    fetchUpComming();
+      // eslint-disable-next-line
+  },[]);
+
+  //Our JSX result :
+    return(
+    <>
+    <h1>Home</h1>
+    <h3>Latest</h3> 
+      <div className="row">
+        {lastMovie?(
+        <Card movie={lastMovie}/>
+        ):(<h1>Loading</h1>)}
+      </div>
+    <h3>Top Rated</h3>
+      <div className="row">
+        {topRatedMovie.map(movie => (
+            <Card key={movie.title} movie={movie} />
+          ))}
+      </div>
+    <h3>Now Playing</h3>
+      <div className="row">
+          {nowPlaying.map(movie => (
+              <Card key={movie.title} movie={movie} />
+            ))}
+        </div>
+    <h3>Up comming</h3>
+      <div className="row">
+            {upComming.map(movie => (
+                <Card key={movie.title} movie={movie} />
+              ))}
+          </div>
+    </>
+    )
   }
   
   export default Home
