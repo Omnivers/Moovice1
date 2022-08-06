@@ -6,6 +6,7 @@ import NotFound from "./Pages/NotFound"
 import Popular from "./Pages/Popular"
 import Weekly from "./Pages/Weekly"
 import Header from "./components/Header"
+import "./App.css"
 
 function App(){
   return(
