@@ -17,8 +17,7 @@ const Weekly = () => {
   },[])
   return (
     <>
-    <h1>Weekly</h1>
-    <div className="row">
+    <div className="container row m-5">
     {movies.map(movie=>(
       <Card key={movie.title} movie={movie} movies={movies}/>
     ))}

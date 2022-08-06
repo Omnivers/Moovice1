@@ -26,8 +26,7 @@ function Favorites(){
 
   return(
     <>
-    <h1>Favorites :</h1>
-    <div className="row">
+    <div className="container row m-5">
       {movies.length===0?(
       <h1>You have no Favorites movies yet !</h1>
       ):(

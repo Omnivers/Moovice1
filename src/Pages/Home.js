@@ -51,27 +51,26 @@ const Home = () => {
   //Our JSX result :
     return(
     <>
-    <h1>Home</h1>
-    <h3>Latest</h3> 
-      <div className="row">
+    <h3 className='title'>Latest</h3> 
+      <div className="container row m-5">
         {lastMovie?(
         <Card movie={lastMovie}/>
         ):(<h1>Loading</h1>)}
       </div>
-    <h3>Top Rated</h3>
-      <div className="row">
+    <h3 className='title'>Top Rated</h3>
+      <div className="container row m-5">
         {topRatedMovie.map(movie => (
             <Card key={movie.title} movie={movie} />
           ))}
       </div>
-    <h3>Now Playing</h3>
-      <div className="row">
+    <h3 className='title'>Now Playing</h3>
+      <div className="container row m-5">
           {nowPlaying.map(movie => (
               <Card key={movie.title} movie={movie} />
             ))}
         </div>
-    <h3>Up comming</h3>
-      <div className="row">
+    <h3 className='title'>Up comming</h3>
+      <div className="container row m-5">
             {upComming.map(movie => (
                 <Card key={movie.title} movie={movie} />
               ))}
