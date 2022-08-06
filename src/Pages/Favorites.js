@@ -26,14 +26,16 @@ function Favorites(){
 
   return(
     <>
-    <div className="container row m-5">
+    <div className="justify-content-center row m-5">
       {movies.length===0?(
       <h1>You have no Favorites movies yet !</h1>
       ):(
     movies.map(movie=>(
-      <Card key={movie.title} movie={movie} movies={movies} fetchFavorites={fetchFavorites}/>
+      <Card key={movie.title} movie={movie} movies={movies} fetchFavorites={fetchFavorites} stars={movie.vote_average}/>
+      
     ))
       )}
+      {console.log(movies)}
     </div>
     </>
 )}

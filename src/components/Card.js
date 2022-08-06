@@ -1,6 +1,6 @@
 import failLoad from '../images/failLoad.png'
 function Card(props){
-
+  let allFavs=JSON.parse(localStorage.getItem('favoritesIds'));
   const addToFavorites=()=>{
     var favoritesIds = [] // Nos IDS Favoris
     var localFavorites=localStorage.getItem('favoritesIds')//On récupére notre base de localStorage
@@ -14,6 +14,7 @@ function Card(props){
         favoritesIds.push(props.movie.id)
         localStorage.setItem('favoritesIds',JSON.stringify(favoritesIds))
     }
+    props.fetchData()
   }
 
   const removeFav=()=>{ // Setting again the localStorage and passing the fetch to initilise the removed movie
@@ -22,31 +23,39 @@ function Card(props){
     localFavorites.splice(localFavorites.indexOf(props.movie.id),1)
     localStorage.setItem('favoritesIds',JSON.stringify(localFavorites))
     }
+    props.fetchData()
     props.fetchFavorites() // Error is not a function insolved yet ! tryed method : (import { PropTypes } from "react";)
   }
     
   return(
-    <div className="card" style={{width: '18rem'}}>
+    <div className="card p-0" style={{width: '15rem'}}>
     {props.movie.poster_path === null ? (
       <>
       <img src={failLoad} className="card-img-top" alt={props.title} />
-      <div className="card-body">
-        <h5 className="card-title">{props.movie.title}</h5>
-        <p className='card-text'>Release date: {props.movie.release_date}</p>
-        <p className='card-text'>{props.movie.overview}</p>
-        <button onClick={addToFavorites}>Add to favorites</button>
-        <button onClick={removeFav}>Remove from favorites</button>
+      <div className="cardBody">
+        <h5 className="card-titre-none">{props.movie.title}</h5>
+        {/* <p className='card-text'>Release date: {props.movie.release_date}</p> */}
+        {/* <p className='card-text'>{props.movie.overview}</p> */}
+      {allFavs.includes(props.movie.id)?(
+        <button className='remove-btn' onClick={removeFav}>Remove from favorites</button>
+      ):(
+        <button className='add-btn' onClick={addToFavorites}>Add to favorites</button>
+      )}
       </div> 
       </> 
     ):(
       <>
     <img src={`https://image.tmdb.org/t/p/w300/${props.movie.poster_path}`} className="card-img-top" alt={props.title} />
-    <div className="card-body">
-      <h5 className="card-title">{props.movie.title}</h5>
-      <p className='card-text'>Release date: {props.movie.release_date}</p>
-      <p className='card-text'>{props.movie.overview}</p>
-      <button onClick={addToFavorites}>Add to favorites</button>
-      <button onClick={removeFav}>Remove from favorites</button>
+    <div className="cardBody">
+      <h5 className="card-titre">{props.movie.title}</h5>
+      {/* <p className='card-text'>Release date: {props.movie.release_date}</p> */}
+      {/* <p className='card-text'>{props.movie.overview}</p> */}
+      {allFavs.includes(props.movie.id)?(
+        <button className='remove-btn' onClick={removeFav}>Remove from favorites</button>
+      ):(
+        <button className='add-btn' onClick={addToFavorites}>Add to favorites</button>
+      )}
+      {/* <span className='stars'>{props.stars}</span> */}
     </div>
     </>
     )}

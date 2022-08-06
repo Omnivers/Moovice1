@@ -17,9 +17,9 @@ const Weekly = () => {
   },[])
   return (
     <>
-    <div className="container row m-5">
+    <div className="justify-content-center row m-5">
     {movies.map(movie=>(
-      <Card key={movie.title} movie={movie} movies={movies}/>
+      <Card key={movie.title} movie={movie} movies={movies} stars={movie.vote_average}/>
     ))}
     </div>
     </>

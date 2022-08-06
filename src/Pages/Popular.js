@@ -14,9 +14,9 @@ const Popular = () => {
   
   return (
     <>
-      <div className="container row m-5">
+      <div className="justify-content-center row m-5">
       {movies.map(movie => (
-          <Card key={movie.title} movie={movie} />
+          <Card key={movie.title} movie={movie} stars={movie.vote_average} fetchData={fetchData} />
         ))}
       </div>
   </>
