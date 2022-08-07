@@ -29,11 +29,18 @@ body{
   padding-top: 10px;
   padding-bottom: 2px;
  }
- li{
-  list-style: none;
+ .menu li{
+ list-style: none;
+ margin-right: 40px;
  }
- ul{
-  margin: 0;
+ .menu ul{
+  margin:0;
+  display:flex;
+  align-items: center;
+ }
+ .menu div{
+  display:flex;
+  justify-content: space-between;
  }
  .title{
   font-size: 40px;
@@ -312,12 +319,10 @@ body{
   font-family: inherit;
   margin: 10px;
  }
- 
  .trailer.learn-more {
   width: 12rem;
   height: auto;
  }
- 
  .trailer.learn-more .circle {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: relative;
@@ -328,7 +333,6 @@ body{
   background: #ff0000;
   border-radius: 1.625rem;
  }
- 
  .trailer.learn-more .circle .icon {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: absolute;
@@ -337,7 +341,6 @@ body{
   margin: auto;
   background: #fff;
  }
- 
  .trailer.learn-more .circle .icon.arrow {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   left: 0.625rem;
@@ -345,7 +348,6 @@ body{
   height: 0.125rem;
   background: none;
  }
- 
  .trailer.learn-more .circle .icon.arrow::before {
   position: absolute;
   content: "";
@@ -392,3 +394,28 @@ body{
   flex-direction: column;
   align-items: center;
  }
+ .burger{
+  color:white;
+  display:none;
+ }
+ @media (max-width: 768px) {
+  .burger{
+    display: block;
+  }
+  .menu{
+    display: flex;
+  }
+  .menu div{
+    flex-direction: column;
+  }
+  .menu li{
+    margin: 0;   
+  }
+ .menu ul{
+  display:flex;
+  flex-direction: column;
+  }
+  #nav{
+    justify-content: center;
+  }
+}

@@ -48,7 +48,7 @@ function Description(){
             </div>
         ):(
         <div className="overlay">
-        <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} className="card-img-top" alt={movie.title} />
+        <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} className="card-img-top mb-3" alt={movie.title} />
         {videoPlayer&&
         <YouTube videoId={trailer.key} />}
         <button onClick={playTrailer} className="trailer learn-more">
