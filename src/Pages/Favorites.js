@@ -23,19 +23,19 @@ function Favorites(){
     fetchFavorites()
     // eslint-disable-next-line
   },[])
+  
 
   return(
     <>
     <div className="justify-content-center row m-5">
       {movies.length===0?(
-      <h1>You have no Favorites movies yet !</h1>
+      <h1 className="text-light">You have no Favorites movies yet !</h1>
       ):(
     movies.map(movie=>(
       <Card key={movie.title} movie={movie} movies={movies} fetchFavorites={fetchFavorites} stars={movie.vote_average}/>
       
     ))
       )}
-      {console.log(movies)}
     </div>
     </>
 )}

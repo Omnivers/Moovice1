@@ -38,13 +38,16 @@ const Home = () => {
     const response=await request.json()
     setUpComming(response.results) 
   }
-
-  // Component did amont for our fetching functions :
-  useEffect(()=>{
+  // Making all the fetching functions in one for the prop && lisibility
+  const fetchData =()=>{
     fetchLastMovie();
     fetchTopRated();
     fetchNowPlaying();
     fetchUpComming();
+  }
+  // Component did amont for our fetching functions :
+  useEffect(()=>{
+      fetchData()
       // eslint-disable-next-line
   },[]);
 
@@ -54,25 +57,25 @@ const Home = () => {
     <h3 className='title'>Latest</h3> 
       <div className="justify-content-center row m-5">
         {lastMovie?(
-        <Card movie={lastMovie} stars={lastMovie.vote_average} />
+        <Card movie={lastMovie} stars={lastMovie.vote_average}  fetchData={fetchData}/>
         ):(<h1>Loading</h1>)}
       </div>
     <h3 className='title'>Top Rated</h3>
       <div className="justify-content-center row m-5">
         {topRatedMovie.map(movie => (
-            <Card key={movie.title} movie={movie}  stars={movie.vote_average} />
+            <Card key={movie.title} movie={movie}  stars={movie.vote_average}  fetchData={fetchData}/>
           ))}
       </div>
     <h3 className='title'>Now Playing</h3>
       <div className="justify-content-center row m-5">
           {nowPlaying.map(movie => (
-              <Card key={movie.title} movie={movie}  stars={movie.vote_average} />
+              <Card key={movie.title} movie={movie}  stars={movie.vote_average}  fetchData={fetchData}/>
             ))}
         </div>
     <h3 className='title'>Up comming</h3>
       <div className="justify-content-center row m-5">
             {upComming.map(movie => (
-                <Card key={movie.title} movie={movie}/>
+                <Card key={movie.title} movie={movie} fetchData={fetchData}/>
               ))}
           </div>
     </>

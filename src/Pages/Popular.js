@@ -12,6 +12,7 @@ const Popular = () => {
     fetchData()
   },[])
   
+  
   return (
     <>
       <div className="justify-content-center row m-5">

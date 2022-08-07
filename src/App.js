@@ -7,6 +7,7 @@ import Popular from "./Pages/Popular"
 import Weekly from "./Pages/Weekly"
 import Header from "./components/Header"
 import "./App.css"
+import Description from "./Pages/Description";
 
 function App(){
   return(
@@ -17,6 +18,7 @@ function App(){
       <Route path='/Favorites' element={<Favorites />} />
       <Route path='/Popular' element={<Popular />} />
       <Route path='/Weekly' element={<Weekly />} />
+      <Route path='/Movie/:id' element={<Description />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     </BrowserRouter>
