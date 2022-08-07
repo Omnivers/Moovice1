@@ -12,9 +12,8 @@ const Weekly = () => {
     return week;
   }
   
-  
   const fetchData=async ()=>{
-    const request= await fetch(`http://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${weekAgo()}&primary_release_date.lte=${toDay()}&api_key=f7e05047484d6ec018591df8216ff84e`)
+    const request= await fetch(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${weekAgo()}&primary_release_date.lte=${toDay()}&api_key=f7e05047484d6ec018591df8216ff84e`)
     const response= await request.json()
     setMovies(response.results)
   }
