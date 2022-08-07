@@ -15,10 +15,10 @@ function App(){
     <Header />
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/Favorites' element={<Favorites />} />
-      <Route path='/Popular' element={<Popular />} />
-      <Route path='/Weekly' element={<Weekly />} />
-      <Route path='/Movie/:id' element={<Description />} />
+      <Route path='/favorites' element={<Favorites />} />
+      <Route path='/popular' element={<Popular />} />
+      <Route path='/weekly' element={<Weekly />} />
+      <Route path='/movie/:id' element={<Description />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     </BrowserRouter>
