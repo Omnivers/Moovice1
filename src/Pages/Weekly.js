@@ -3,7 +3,6 @@ import { useEffect,useState } from 'react';
 import Card from '../components/Card';
 const Weekly = () => {
   const [movies,setMovies]=useState([])
-  const API_KEY='f7e05047484d6ec018591df8216ff84e'
   const toDay=()=>{
     const date=moment().format("YYYY-MM-DD")
     return date;
@@ -15,7 +14,7 @@ const Weekly = () => {
   
   
   const fetchData=async ()=>{
-    const request= await fetch(`http://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${weekAgo()}&primary_release_date.lte=${toDay()}&api_key=${API_KEY}`)
+    const request= await fetch(`http://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${weekAgo()}&primary_release_date.lte=${toDay()}&api_key=f7e05047484d6ec018591df8216ff84e`)
     const response= await request.json()
     setMovies(response.results)
   }
