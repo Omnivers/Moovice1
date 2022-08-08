@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {Link} from "react-router-dom";
 function Header(){
-    const [navBar,setNavBar]=useState(true);
+    const [navBar,setNavBar]=useState(false);
     const show =()=>{
         setNavBar(!navBar)
         if(navBar){

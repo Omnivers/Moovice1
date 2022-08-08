@@ -417,5 +417,6 @@ body{
   }
   #nav{
     justify-content: center;
+    display: none;
   }
 }
